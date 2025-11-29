@@ -1,17 +1,15 @@
 import json
 from typing import Optional, Dict, List, Any
-from main import run_paper_search_agent, LLM_CONFIG
+from main import run_paper_search_agent
+from config import MISTRAL_API_KEY, EVALUATION_CONFIG
 from mistralai import Mistral
-import os
 
 
 class PaperSearchEvaluator:
-    """Evaluate the performance of the paper search agent."""
+    """Evaluate the performance of the paper search agent using LLM-based scoring."""
 
     def __init__(self):
-        api_key = os.getenv("MISTRAL_API_KEY")
-        self.client = Mistral(api_key=api_key)
-        self.llm_config = LLM_CONFIG
+        self.client = Mistral(api_key=MISTRAL_API_KEY)
 
     def evaluate_paper_match(
         self,
@@ -53,9 +51,9 @@ Respond only with valid JSON."""
 
         # Use Mistral to evaluate
         response = self.client.messages.create(
-            model="mistral-small-latest",
+            model=EVALUATION_CONFIG["evaluation_model"],
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.0,
+            temperature=EVALUATION_CONFIG["temperature"],
         )
 
         try:
@@ -99,9 +97,9 @@ Provide a JSON evaluation with:
 Respond only with valid JSON."""
 
         response = self.client.messages.create(
-            model="mistral-small-latest",
+            model=EVALUATION_CONFIG["evaluation_model"],
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.0,
+            temperature=EVALUATION_CONFIG["temperature"],
         )
 
         try:

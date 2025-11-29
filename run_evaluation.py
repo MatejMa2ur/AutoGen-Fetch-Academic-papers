@@ -9,6 +9,7 @@ import json
 import sys
 from pathlib import Path
 from evaluation import PaperSearchEvaluator
+from config import EVALUATION_CONFIG
 
 
 def main():
@@ -62,7 +63,7 @@ def main():
         results = evaluator.run_evaluation_suite(test_queries)
 
         # Save results to file
-        output_file = Path("evaluation_results.json")
+        output_file = Path(EVALUATION_CONFIG["result_file"])
         with open(output_file, "w") as f:
             json.dump(results, f, indent=2)
 

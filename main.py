@@ -1,21 +1,13 @@
 from datetime import datetime
 import os
 from pathlib import Path
-import dotenv
-import json
 import re
-from tools import search_web, search_research_papers_api
+from config import LLM_CONFIG, AGENT_CONFIG
+from tools import search_research_papers_api
 from autogen import (
     AssistantAgent,
     UserProxyAgent,
-    GroupChat,
-    GroupChatManager,
 )
-
-dotenv.load_dotenv()
-api_key = os.getenv("MISTRAL_API_KEY")
-if not api_key:
-    raise ValueError("MISTRAL_API_KEY not found in environment variables.")
 
 
 def get_work_dir():
@@ -31,26 +23,6 @@ def search_papers_tool(topic: str, year: int = None, year_condition: str = "any"
     Handles parameter extraction and delegates to the main search function.
     """
     return search_research_papers_api(topic, year, year_condition, min_citations)
-
-LLM_CONFIG = {
-    "config_list": [
-        {
-            "model": "mistral-small-2503",
-            "api_type": "mistral",
-            "api_key": api_key,
-            "api_rate_limit": 0.5,
-            "max_retries": 3,
-            "timeout": 30,
-            "num_predict": -1,
-            "repeat_penalty": 1.1,
-            "stream": False,
-            "seed": 42,
-            "native_tool_calls": False,
-            "cache_seed": None,
-            "timeout": 120,
-        }
-    ]
-}
 
 # Create the research paper search assistant
 paper_search_agent = AssistantAgent(

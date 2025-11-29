@@ -1,10 +1,12 @@
 import requests
 import json
 from typing import Optional
-from datetime import datetime
-
-# Semantic Scholar API endpoint
-SEMANTIC_SCHOLAR_API = "https://api.semanticscholar.org/graph/v1/paper/search"
+from config import (
+    SEMANTIC_SCHOLAR_API,
+    SEMANTIC_SCHOLAR_TIMEOUT,
+    SEMANTIC_SCHOLAR_RESULTS_LIMIT,
+    SEARCH_CONFIG
+)
 
 
 def search_web(query: str) -> str:
@@ -20,6 +22,9 @@ def search_research_papers_api(
 ) -> str:
     """
     Search for research papers using Semantic Scholar API.
+
+    Queries the Semantic Scholar API with the given criteria and returns
+    matching papers formatted as JSON.
 
     Args:
         topic: The research topic to search for
@@ -46,14 +51,14 @@ def search_research_papers_api(
     search_query = " ".join(query_parts)
 
     try:
-        # Query Semantic Scholar API
+        # Query Semantic Scholar API with configured parameters
         params = {
             "query": search_query,
-            "limit": 10,
-            "fields": "paperId,title,year,citationCount,authors,venue,openAccessPdf"
+            "limit": SEMANTIC_SCHOLAR_RESULTS_LIMIT,
+            "fields": ",".join(SEARCH_CONFIG["default_fields"])
         }
 
-        response = requests.get(SEMANTIC_SCHOLAR_API, params=params, timeout=10)
+        response = requests.get(SEMANTIC_SCHOLAR_API, params=params, timeout=SEMANTIC_SCHOLAR_TIMEOUT)
         response.raise_for_status()
         data = response.json()
 
@@ -92,7 +97,7 @@ def search_research_papers_api(
             "papers": []
         }
 
-        for paper in filtered_papers[:5]:  # Return top 5 results
+        for paper in filtered_papers[:SEARCH_CONFIG["max_results"]]:
             results["papers"].append({
                 "title": paper.get("title"),
                 "year": paper.get("year"),

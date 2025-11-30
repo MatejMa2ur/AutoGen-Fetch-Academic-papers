@@ -1,5 +1,6 @@
 import requests
 import json
+import time
 from typing import Optional
 from config import (
     SEMANTIC_SCHOLAR_API,
@@ -58,9 +59,29 @@ def search_research_papers_api(
             "fields": ",".join(SEARCH_CONFIG["default_fields"])
         }
 
-        response = requests.get(SEMANTIC_SCHOLAR_API, params=params, timeout=SEMANTIC_SCHOLAR_TIMEOUT)
-        response.raise_for_status()
-        data = response.json()
+        # Retry logic for rate limiting (429 errors)
+        max_retries = 3
+        retry_delay = 2
+
+        for attempt in range(max_retries):
+            try:
+                response = requests.get(
+                    SEMANTIC_SCHOLAR_API,
+                    params=params,
+                    timeout=SEMANTIC_SCHOLAR_TIMEOUT
+                )
+                response.raise_for_status()
+                data = response.json()
+                break  # Success, exit retry loop
+
+            except requests.exceptions.HTTPError as e:
+                # Handle rate limiting (429) with backoff
+                if e.response.status_code == 429:
+                    if attempt < max_retries - 1:
+                        wait_time = retry_delay * (2 ** attempt)  # Exponential backoff
+                        time.sleep(wait_time)
+                        continue
+                raise  # Re-raise other HTTP errors
 
         papers = data.get("data", [])
 

@@ -25,11 +25,11 @@ SEMANTIC_SCHOLAR_RESULTS_LIMIT = 10
 LLM_CONFIG = {
     "config_list": [
         {
-            "model": "mistral-small-2503",
+            "model": "mistral-small-latest",
             "api_type": "mistral",
             "api_key": MISTRAL_API_KEY,
             "api_rate_limit": 0.5,
-            "max_retries": 3,
+            "max_retries": 2,
             "timeout": 30,
             "num_predict": -1,
             "repeat_penalty": 1.1,
@@ -44,7 +44,7 @@ LLM_CONFIG = {
 
 # Agent Configuration
 AGENT_CONFIG = {
-    "max_consecutive_auto_reply": 15,
+    "max_consecutive_auto_reply": 5,  # Reduced to prevent infinite retries on errors
     "human_input_mode": "NEVER",
 }
 
@@ -53,6 +53,7 @@ EVALUATION_CONFIG = {
     "evaluation_model": "mistral-small-latest",
     "temperature": 0.0,
     "result_file": "evaluation_results.json",
+    "max_retries": 2,  # Retry limit for evaluation API calls
 }
 
 # Search Parameters

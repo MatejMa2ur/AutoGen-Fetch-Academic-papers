@@ -38,18 +38,9 @@ def search_research_papers_api(
     """
 
     # Build the query string
-    query_parts = [topic]
-
-    # Add year constraint to query if specified
-    if year and year_condition != "any":
-        if year_condition == "exact":
-            query_parts.append(f"year:{year}")
-        elif year_condition == "before":
-            query_parts.append(f"year:<{year}")
-        elif year_condition == "after":
-            query_parts.append(f"year:>{year}")
-
-    search_query = " ".join(query_parts)
+    # Note: Only include the topic in the API query.
+    # Year filtering happens client-side to avoid issues with API syntax variations.
+    search_query = topic
 
     try:
         # Query Semantic Scholar API with configured parameters

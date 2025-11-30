@@ -25,7 +25,7 @@ SEMANTIC_SCHOLAR_RESULTS_LIMIT = 10
 LLM_CONFIG = {
     "config_list": [
         {
-            "model": "mistral-small-latest",
+            "model": "open-mistral-nemo",
             "api_type": "mistral",
             "api_key": MISTRAL_API_KEY,
             "api_rate_limit": 0.5,

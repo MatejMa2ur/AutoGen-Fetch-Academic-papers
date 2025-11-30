@@ -1,0 +1,966 @@
+{
+  "TotalQueries": 5,
+  "SuccessfulQueries": 5,
+  "AverageCorrectness": 4,
+  "AverageAdherence": 4,
+  "AverageCompleteness": 4,
+  "AverageUsefulness": 3.8,
+  "OverallAverageScore": 79,
+  "TaskSuccessRate": 100,
+  "Results": [
+    {
+      "TestQuery": {
+        "Description": "Simple topic search",
+        "Query": "Find papers on machine learning",
+        "ExpectedTopic": "machine learning",
+        "ExpectedMinYear": null,
+        "ExpectedMaxYear": null,
+        "MinCitations": null
+      },
+      "SearchResult": {
+        "status": "success",
+        "papers_found": 5,
+        "papers": [
+          {
+            "paperId": "53c9f3c34d8481adaf24df3b25581ccf1bc53f5c",
+            "title": "Physics-informed machine learning",
+            "year": 2021,
+            "citationCount": 4858,
+            "authors": [
+              {
+                "name": "G. Karniadakis",
+                "authorId": "1720124"
+              },
+              {
+                "name": "I. Kevrekidis",
+                "authorId": "3439407"
+              },
+              {
+                "name": "Lu Lu",
+                "authorId": "2149373363"
+              },
+              {
+                "name": "P. Perdikaris",
+                "authorId": "3410970"
+              },
+              {
+                "name": "Sifan Wang",
+                "authorId": "118188801"
+              },
+              {
+                "name": "Liu Yang",
+                "authorId": "2145494483"
+              }
+            ],
+            "venue": "Nature Reviews Physics"
+          },
+          {
+            "paperId": "f9c602cc436a9ea2f9e7db48c77d924e09ce3c32",
+            "title": "Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms",
+            "year": 2017,
+            "citationCount": 9801,
+            "authors": [
+              {
+                "name": "Han Xiao",
+                "authorId": "145642373"
+              },
+              {
+                "name": "Kashif Rasul",
+                "authorId": "4565995"
+              },
+              {
+                "name": "Roland Vollgraf",
+                "authorId": "2742129"
+              }
+            ],
+            "venue": "arXiv.org"
+          },
+          {
+            "paperId": "0090023afc66cd2741568599057f4e82b566137c",
+            "title": "A Survey on Bias and Fairness in Machine Learning",
+            "year": 2019,
+            "citationCount": 5046,
+            "authors": [
+              {
+                "name": "Ninareh Mehrabi",
+                "authorId": "51997673"
+              },
+              {
+                "name": "Fred Morstatter",
+                "authorId": "2775559"
+              },
+              {
+                "name": "N. Saxena",
+                "authorId": "51884035"
+              },
+              {
+                "name": "Kristina Lerman",
+                "authorId": "1782658"
+              },
+              {
+                "name": "A. Galstyan",
+                "authorId": "143728483"
+              }
+            ],
+            "venue": "ACM Computing Surveys"
+          },
+          {
+            "paperId": "9c9d7247f8c51ec5a02b0d911d1d7b9e8160495d",
+            "title": "TensorFlow: Large-Scale Machine Learning on Heterogeneous Distributed Systems",
+            "year": 2016,
+            "citationCount": 11471,
+            "authors": [
+              {
+                "name": "Mart\u00EDn Abadi",
+                "authorId": "2057642721"
+              },
+              {
+                "name": "Ashish Agarwal",
+                "authorId": "2078528337"
+              },
+              {
+                "name": "P. Barham",
+                "authorId": "144758007"
+              },
+              {
+                "name": "E. Brevdo",
+                "authorId": "2445241"
+              },
+              {
+                "name": "Z. Chen",
+                "authorId": "2545358"
+              },
+              {
+                "name": "C. Citro",
+                "authorId": "48738717"
+              },
+              {
+                "name": "G. Corrado",
+                "authorId": "32131713"
+              },
+              {
+                "name": "Andy Davis",
+                "authorId": "36347083"
+              },
+              {
+                "name": "J. Dean",
+                "authorId": "49959210"
+              },
+              {
+                "name": "M. Devin",
+                "authorId": "145139947"
+              },
+              {
+                "name": "S. Ghemawat",
+                "authorId": "1780892"
+              },
+              {
+                "name": "I. Goodfellow",
+                "authorId": "153440022"
+              },
+              {
+                "name": "A. Harp",
+                "authorId": "2064102917"
+              },
+              {
+                "name": "G. Irving",
+                "authorId": "2060655766"
+              },
+              {
+                "name": "M. Isard",
+                "authorId": "2090818"
+              },
+              {
+                "name": "Yangqing Jia",
+                "authorId": "39978391"
+              },
+              {
+                "name": "R. J\u00F3zefowicz",
+                "authorId": "1944541"
+              },
+              {
+                "name": "Lukasz Kaiser",
+                "authorId": "40527594"
+              },
+              {
+                "name": "M. Kudlur",
+                "authorId": "1942300"
+              },
+              {
+                "name": "J. Levenberg",
+                "authorId": "3369421"
+              },
+              {
+                "name": "Dandelion Man\u00E9",
+                "authorId": "30415265"
+              },
+              {
+                "name": "R. Monga",
+                "authorId": "3089272"
+              },
+              {
+                "name": "Sherry Moore",
+                "authorId": "144375552"
+              },
+              {
+                "name": "D. Murray",
+                "authorId": "20154699"
+              },
+              {
+                "name": "C. Olah",
+                "authorId": "2357599490"
+              },
+              {
+                "name": "M. Schuster",
+                "authorId": "144927151"
+              },
+              {
+                "name": "Jonathon Shlens",
+                "authorId": "1789737"
+              },
+              {
+                "name": "Benoit Steiner",
+                "authorId": "32163737"
+              },
+              {
+                "name": "I. Sutskever",
+                "authorId": "1701686"
+              },
+              {
+                "name": "Kunal Talwar",
+                "authorId": "35210462"
+              },
+              {
+                "name": "P. Tucker",
+                "authorId": "2080690"
+              },
+              {
+                "name": "Vincent Vanhoucke",
+                "authorId": "2657155"
+              },
+              {
+                "name": "Vijay Vasudevan",
+                "authorId": "2053781980"
+              },
+              {
+                "name": "F. Vi\u00E9gas",
+                "authorId": "1765169"
+              },
+              {
+                "name": "O. Vinyals",
+                "authorId": "1689108"
+              },
+              {
+                "name": "Pete Warden",
+                "authorId": "47941411"
+              },
+              {
+                "name": "M. Wattenberg",
+                "authorId": "145233583"
+              },
+              {
+                "name": "M. Wicke",
+                "authorId": "35078078"
+              },
+              {
+                "name": "Yuan Yu",
+                "authorId": "2117163698"
+              },
+              {
+                "name": "Xiaoqiang Zheng",
+                "authorId": "2152198093"
+              }
+            ],
+            "venue": "arXiv.org"
+          },
+          {
+            "paperId": "bc00ff34ec7772080c7039b17f7069a2f7df0889",
+            "title": "Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead",
+            "year": 2018,
+            "citationCount": 7214,
+            "authors": [
+              {
+                "name": "C. Rudin",
+                "authorId": "48395540"
+              }
+            ],
+            "venue": "Nature Machine Intelligence"
+          }
+        ],
+        "message": null
+      },
+      "Score": {
+        "correctness": 4,
+        "adherence": 4,
+        "completeness": 4,
+        "usefulness": 4,
+        "comments": "Papers found and appear relevant",
+        "AverageScore": 4,
+        "OverallScore": 80
+      },
+      "ElapsedMilliseconds": 1131,
+      "EvaluatedAt": "2025-11-30T18:40:11.541758Z"
+    },
+    {
+      "TestQuery": {
+        "Description": "Topic with year constraint",
+        "Query": "Find papers on deep learning published after 2020",
+        "ExpectedTopic": "deep learning",
+        "ExpectedMinYear": 2020,
+        "ExpectedMaxYear": null,
+        "MinCitations": null
+      },
+      "SearchResult": {
+        "status": "success",
+        "papers_found": 5,
+        "papers": [
+          {
+            "paperId": "f28e387d4229c5f690ce4570a391c0f47e7155c7",
+            "title": "nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation",
+            "year": 2020,
+            "citationCount": 6881,
+            "authors": [
+              {
+                "name": "Fabian Isensee",
+                "authorId": "7886986"
+              },
+              {
+                "name": "P. Jaeger",
+                "authorId": "51433108"
+              },
+              {
+                "name": "Simon A. A. Kohl",
+                "authorId": "51011129"
+              },
+              {
+                "name": "Jens Petersen",
+                "authorId": "152800798"
+              },
+              {
+                "name": "Klaus Hermann Maier-Hein",
+                "authorId": "1397951928"
+              }
+            ],
+            "venue": "Nature Methods"
+          },
+          {
+            "paperId": "0084f3cb0a1754272151c5268a783f24bf5676a0",
+            "title": "Review of deep learning: concepts, CNN architectures, challenges, applications, future directions",
+            "year": 2021,
+            "citationCount": 5571,
+            "authors": [
+              {
+                "name": "Laith Alzubaidi",
+                "authorId": "2281247548"
+              },
+              {
+                "name": "Jinglan Zhang",
+                "authorId": "1754598"
+              },
+              {
+                "name": "A. Humaidi",
+                "authorId": "2073994643"
+              },
+              {
+                "name": "Ayad Al-dujaili",
+                "authorId": "1409267833"
+              },
+              {
+                "name": "Y. Duan",
+                "authorId": "145013346"
+              },
+              {
+                "name": "O. Al-Shamma",
+                "authorId": "1410016448"
+              },
+              {
+                "name": "Jos\u00E9 I. Santamar\u00EDa",
+                "authorId": "2146732191"
+              },
+              {
+                "name": "M. Fadhel",
+                "authorId": "1412407676"
+              },
+              {
+                "name": "Muthana Al-Amidie",
+                "authorId": "1412958882"
+              },
+              {
+                "name": "Laith Farhan",
+                "authorId": "144121680"
+              }
+            ],
+            "venue": "Journal of Big Data"
+          },
+          {
+            "paperId": "c7bbeaef75fa64c7e9cdf1b68bb487b9f8cd9a7d",
+            "title": "Image Segmentation Using Deep Learning: A Survey",
+            "year": 2020,
+            "citationCount": 3366,
+            "authors": [
+              {
+                "name": "Shervin Minaee",
+                "authorId": "2164604"
+              },
+              {
+                "name": "Yuri Boykov",
+                "authorId": "1692688"
+              },
+              {
+                "name": "F. Porikli",
+                "authorId": "29905643"
+              },
+              {
+                "name": "A. Plaza",
+                "authorId": "143767945"
+              },
+              {
+                "name": "N. Kehtarnavaz",
+                "authorId": "30567641"
+              },
+              {
+                "name": "Demetri Terzopoulos",
+                "authorId": "1750924"
+              }
+            ],
+            "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+          },
+          {
+            "paperId": "2f65c6ac06bfcd992d4dd75f0099a072f5c3cc8c",
+            "title": "Understanding deep learning (still) requires rethinking generalization",
+            "year": 2021,
+            "citationCount": 2454,
+            "authors": [
+              {
+                "name": "Chiyuan Zhang",
+                "authorId": "151505981"
+              },
+              {
+                "name": "Samy Bengio",
+                "authorId": "1751569"
+              },
+              {
+                "name": "Moritz Hardt",
+                "authorId": "1775622"
+              },
+              {
+                "name": "B. Recht",
+                "authorId": "9229182"
+              },
+              {
+                "name": "O. Vinyals",
+                "authorId": "1689108"
+              }
+            ],
+            "venue": "Communications of the ACM"
+          },
+          {
+            "paperId": "f64446de8b1e7d487dd1b837b5a97835e978e7b9",
+            "title": "Classifying Crop Leaf Diseases using Different Deep Learning Models with Transfer Learning",
+            "year": 2024,
+            "citationCount": 930,
+            "authors": [
+              {
+                "name": "Lakshin Pathak",
+                "authorId": "2309338264"
+              },
+              {
+                "name": "Mili Virani",
+                "authorId": "2309396771"
+              },
+              {
+                "name": "Drashti Kansara",
+                "authorId": "2309392072"
+              }
+            ],
+            "venue": "International Journal of Innovative Science and Research Technology"
+          }
+        ],
+        "message": null
+      },
+      "Score": {
+        "correctness": 4,
+        "adherence": 4,
+        "completeness": 4,
+        "usefulness": 4,
+        "comments": "Papers found and appear relevant",
+        "AverageScore": 4,
+        "OverallScore": 80
+      },
+      "ElapsedMilliseconds": 3909,
+      "EvaluatedAt": "2025-11-30T18:40:15.451547Z"
+    },
+    {
+      "TestQuery": {
+        "Description": "Topic with citation requirement",
+        "Query": "Find papers on neural networks with 100\u002B citations",
+        "ExpectedTopic": "neural networks",
+        "ExpectedMinYear": null,
+        "ExpectedMaxYear": null,
+        "MinCitations": 100
+      },
+      "SearchResult": {
+        "status": "success",
+        "papers_found": 1,
+        "papers": [
+          {
+            "paperId": "bc52592805d24e8909640d84ba02120e3112cec5",
+            "title": "Accuracy of the Papanicolaou Test in Screening for and Follow-up of Cervical Cytologic Abnormalities",
+            "year": 2000,
+            "citationCount": 565,
+            "authors": [
+              {
+                "name": "Kavita Nanda",
+                "authorId": "2092965478"
+              },
+              {
+                "name": "D. Mccrory",
+                "authorId": "5765920"
+              },
+              {
+                "name": "Evan Myers",
+                "authorId": "2059023162"
+              },
+              {
+                "name": "Lori A Bastian",
+                "authorId": "49631157"
+              },
+              {
+                "name": "V. Hasselblad",
+                "authorId": "2983540"
+              },
+              {
+                "name": "J. Hickey",
+                "authorId": "153313127"
+              },
+              {
+                "name": "D. Matchar",
+                "authorId": "2891205"
+              }
+            ],
+            "venue": "Annals of Internal Medicine"
+          }
+        ],
+        "message": null
+      },
+      "Score": {
+        "correctness": 4,
+        "adherence": 4,
+        "completeness": 4,
+        "usefulness": 3,
+        "comments": "Papers found and appear relevant",
+        "AverageScore": 3.75,
+        "OverallScore": 75
+      },
+      "ElapsedMilliseconds": 7861,
+      "EvaluatedAt": "2025-11-30T18:40:23.312854Z"
+    },
+    {
+      "TestQuery": {
+        "Description": "Multiple constraints",
+        "Query": "Find papers on transformers published after 2021 with 50\u002B citations",
+        "ExpectedTopic": "transformers",
+        "ExpectedMinYear": 2021,
+        "ExpectedMaxYear": null,
+        "MinCitations": 50
+      },
+      "SearchResult": {
+        "status": "success",
+        "papers_found": 5,
+        "papers": [
+          {
+            "paperId": "e3d7778a47c6cab4ea1ef3ee9d19ec1510c15c60",
+            "title": "SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers",
+            "year": 2021,
+            "citationCount": 6636,
+            "authors": [
+              {
+                "name": "Enze Xie",
+                "authorId": "41020000"
+              },
+              {
+                "name": "Wenhai Wang",
+                "authorId": "71074736"
+              },
+              {
+                "name": "Zhiding Yu",
+                "authorId": "1751019"
+              },
+              {
+                "name": "Anima Anandkumar",
+                "authorId": "2047844"
+              },
+              {
+                "name": "J. \u00C1lvarez",
+                "authorId": "2974008"
+              },
+              {
+                "name": "Ping Luo",
+                "authorId": "47571885"
+              }
+            ],
+            "venue": "Neural Information Processing Systems"
+          },
+          {
+            "paperId": "ad4a0938c48e61b7827869e4ac3baffd0aefab35",
+            "title": "Emerging Properties in Self-Supervised Vision Transformers",
+            "year": 2021,
+            "citationCount": 7535,
+            "authors": [
+              {
+                "name": "Mathilde Caron",
+                "authorId": "2062862676"
+              },
+              {
+                "name": "Hugo Touvron",
+                "authorId": "2113243762"
+              },
+              {
+                "name": "Ishan Misra",
+                "authorId": "1806773"
+              },
+              {
+                "name": "Herv\u0027e J\u0027egou",
+                "authorId": "2065248680"
+              },
+              {
+                "name": "J. Mairal",
+                "authorId": "2599292"
+              },
+              {
+                "name": "Piotr Bojanowski",
+                "authorId": "2329288"
+              },
+              {
+                "name": "Armand Joulin",
+                "authorId": "2319608"
+              }
+            ],
+            "venue": "IEEE International Conference on Computer Vision"
+          },
+          {
+            "paperId": "24b8a0b02bcb7934967757fc59d273a71ba67e30",
+            "title": "TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation",
+            "year": 2021,
+            "citationCount": 4566,
+            "authors": [
+              {
+                "name": "Jieneng Chen",
+                "authorId": "90972805"
+              },
+              {
+                "name": "Yongyi Lu",
+                "authorId": "2946371"
+              },
+              {
+                "name": "Qihang Yu",
+                "authorId": "2156559"
+              },
+              {
+                "name": "Xiangde Luo",
+                "authorId": "1932191260"
+              },
+              {
+                "name": "E. Adeli",
+                "authorId": "3419364"
+              },
+              {
+                "name": "Yan Wang",
+                "authorId": "2152539822"
+              },
+              {
+                "name": "Le Lu",
+                "authorId": "50706692"
+              },
+              {
+                "name": "A. Yuille",
+                "authorId": "145081362"
+              },
+              {
+                "name": "Yuyin Zhou",
+                "authorId": "7743268"
+              }
+            ],
+            "venue": "arXiv.org"
+          },
+          {
+            "paperId": "41a66997ce0a366bba3becf7c3f37c9aebb13fbd",
+            "title": "Scaling Rectified Flow Transformers for High-Resolution Image Synthesis",
+            "year": 2024,
+            "citationCount": 2385,
+            "authors": [
+              {
+                "name": "Patrick Esser",
+                "authorId": "35175531"
+              },
+              {
+                "name": "Sumith Kulal",
+                "authorId": "3411322"
+              },
+              {
+                "name": "A. Blattmann",
+                "authorId": "119843260"
+              },
+              {
+                "name": "Rahim Entezari",
+                "authorId": "2316859494"
+              },
+              {
+                "name": "Jonas Muller",
+                "authorId": "2188737195"
+              },
+              {
+                "name": "Harry Saini",
+                "authorId": "2289994508"
+              },
+              {
+                "name": "Yam Levi",
+                "authorId": "2290013499"
+              },
+              {
+                "name": "Dominik Lorenz",
+                "authorId": "2053482699"
+              },
+              {
+                "name": "Axel Sauer",
+                "authorId": "40562186"
+              },
+              {
+                "name": "Frederic Boesel",
+                "authorId": "2290014125"
+              },
+              {
+                "name": "Dustin Podell",
+                "authorId": "2221125727"
+              },
+              {
+                "name": "Tim Dockhorn",
+                "authorId": "102541178"
+              },
+              {
+                "name": "Zion English",
+                "authorId": "2221127565"
+              },
+              {
+                "name": "Kyle Lacey",
+                "authorId": "2221126982"
+              },
+              {
+                "name": "Alex Goodwin",
+                "authorId": "2290014122"
+              },
+              {
+                "name": "Yannik Marek",
+                "authorId": "2290014387"
+              },
+              {
+                "name": "Robin Rombach",
+                "authorId": "1660819540"
+              }
+            ],
+            "venue": "International Conference on Machine Learning"
+          },
+          {
+            "paperId": "736973165f98105fec3729b7db414ae4d80fcbeb",
+            "title": "Scalable Diffusion Models with Transformers",
+            "year": 2022,
+            "citationCount": 3729,
+            "authors": [
+              {
+                "name": "William S. Peebles",
+                "authorId": "35235273"
+              },
+              {
+                "name": "Saining Xie",
+                "authorId": "1817030"
+              }
+            ],
+            "venue": "IEEE International Conference on Computer Vision"
+          }
+        ],
+        "message": null
+      },
+      "Score": {
+        "correctness": 4,
+        "adherence": 4,
+        "completeness": 4,
+        "usefulness": 4,
+        "comments": "Papers found and appear relevant",
+        "AverageScore": 4,
+        "OverallScore": 80
+      },
+      "ElapsedMilliseconds": 1052,
+      "EvaluatedAt": "2025-11-30T18:40:24.365779Z"
+    },
+    {
+      "TestQuery": {
+        "Description": "Recent high-impact papers",
+        "Query": "Find papers on attention mechanisms published after 2021 with 200\u002B citations",
+        "ExpectedTopic": "attention mechanisms",
+        "ExpectedMinYear": 2021,
+        "ExpectedMaxYear": null,
+        "MinCitations": 200
+      },
+      "SearchResult": {
+        "status": "success",
+        "papers_found": 5,
+        "papers": [
+          {
+            "paperId": "45f686be3b96302ede327645227134e1c304dbab",
+            "title": "Attention mechanisms in computer vision: A survey",
+            "year": 2021,
+            "citationCount": 2006,
+            "authors": [
+              {
+                "name": "Meng-Hao Guo",
+                "authorId": "2088775481"
+              },
+              {
+                "name": "Tianhan Xu",
+                "authorId": "2093923811"
+              },
+              {
+                "name": "Jiangjiang Liu",
+                "authorId": "2119612440"
+              },
+              {
+                "name": "Zheng-Ning Liu",
+                "authorId": "79305819"
+              },
+              {
+                "name": "Peng-Tao Jiang",
+                "authorId": "2258969903"
+              },
+              {
+                "name": "Tai-Jiang Mu",
+                "authorId": "31471368"
+              },
+              {
+                "name": "Song-Hai Zhang",
+                "authorId": "7671691"
+              },
+              {
+                "name": "Ralph Robert Martin",
+                "authorId": "2404014"
+              },
+              {
+                "name": "Ming-Ming Cheng",
+                "authorId": "37535930"
+              },
+              {
+                "name": "Shimin Hu",
+                "authorId": "145140922"
+              }
+            ],
+            "venue": "Computational Visual Media"
+          },
+          {
+            "paperId": "c8a145ecdf84015a8a38ef21c3baa954fa84368e",
+            "title": "The multi-modal fusion in visual question answering: a review of attention mechanisms",
+            "year": 2023,
+            "citationCount": 257,
+            "authors": [
+              {
+                "name": "Siyu Lu",
+                "authorId": "2180699015"
+              },
+              {
+                "name": "Mingzhe Liu",
+                "authorId": "2156101884"
+              },
+              {
+                "name": "Lirong Yin",
+                "authorId": "143931711"
+              },
+              {
+                "name": "Zhengtong Yin",
+                "authorId": "9105629"
+              },
+              {
+                "name": "Xuan Liu",
+                "authorId": "26966619"
+              },
+              {
+                "name": "Wenfeng Zheng",
+                "authorId": "2152934707"
+              }
+            ],
+            "venue": "PeerJ Computer Science"
+          },
+          {
+            "paperId": "5a71bf38cf409b55b14b2d5159c0b06bef9ad603",
+            "title": "A General Survey on Attention Mechanisms in Deep Learning",
+            "year": 2022,
+            "citationCount": 455,
+            "authors": [
+              {
+                "name": "Gianni Brauwers",
+                "authorId": "2089014461"
+              },
+              {
+                "name": "Flavius Frasincar",
+                "authorId": "1729599"
+              }
+            ],
+            "venue": "IEEE Transactions on Knowledge and Data Engineering"
+          },
+          {
+            "paperId": "17e9173e3711fcde69c81a702cb752719d967109",
+            "title": "Vehicle Trajectory Prediction Using LSTMs With Spatial\u2013Temporal Attention Mechanisms",
+            "year": 2022,
+            "citationCount": 226,
+            "authors": [
+              {
+                "name": "Lei Lin",
+                "authorId": "2111614756"
+              },
+              {
+                "name": "Weizi Li",
+                "authorId": "2116202028"
+              },
+              {
+                "name": "Huikun Bi",
+                "authorId": "3441309"
+              },
+              {
+                "name": "Lingqiao Qin",
+                "authorId": "8639436"
+              }
+            ],
+            "venue": "IEEE Intelligent Transportation Systems Magazine"
+          },
+          {
+            "paperId": "84b21331ea5941d4042e51892ae4a6ad29f7d89d",
+            "title": "Shared mechanisms underlie the control of working memory and attention",
+            "year": 2021,
+            "citationCount": 282,
+            "authors": [
+              {
+                "name": "Matthew F. Panichello",
+                "authorId": "6965519"
+              },
+              {
+                "name": "T. J. Buschman",
+                "authorId": "2738354"
+              }
+            ],
+            "venue": "Nature"
+          }
+        ],
+        "message": null
+      },
+      "Score": {
+        "correctness": 4,
+        "adherence": 4,
+        "completeness": 4,
+        "usefulness": 4,
+        "comments": "Papers found and appear relevant",
+        "AverageScore": 4,
+        "OverallScore": 80
+      },
+      "ElapsedMilliseconds": 8018,
+      "EvaluatedAt": "2025-11-30T18:40:32.384727Z"
+    }
+  ],
+  "EvaluatedAt": "0001-01-01T00:00:00"
+}

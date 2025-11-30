@@ -1,0 +1,23 @@
+# Build results
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+*.nupkg
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.sln.iml
+*.suo
+.idea/
+
+# Runtime
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db

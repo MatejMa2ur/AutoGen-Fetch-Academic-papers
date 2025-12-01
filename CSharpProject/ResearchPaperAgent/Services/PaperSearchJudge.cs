@@ -1,24 +1,149 @@
 namespace ResearchPaperAgent.Services;
 
+using AutoGen.Core;
+using AutoGen.Mistral;
 using ResearchPaperAgent.Models;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 
 public class PaperSearchJudge
 {
-    public Task<EvaluationScore> EvaluateAsync(string taskDescription, SearchResult result)
+    private readonly MistralClient? _mistralClient;
+    private readonly string? _model;
+
+    public PaperSearchJudge() { }
+
+    public PaperSearchJudge(MistralClient mistralClient, string model)
+    {
+        _mistralClient = mistralClient;
+        _model = model;
+    }
+
+    public async Task<EvaluationScore> EvaluateAsync(string taskDescription, SearchResult result)
     {
         // No papers found - score fails
         if (result.Status != "success" || result.Papers.Count == 0)
         {
-            return Task.FromResult(new EvaluationScore(
+            return new EvaluationScore(
                 Correctness: 1,
                 Adherence: 2,
                 Completeness: 0,
                 Usefulness: 0,
-                Comments: "No papers found matching criteria"));
+                Comments: "No papers found matching criteria");
         }
 
-        // Evaluate using heuristics
-        return Task.FromResult(EvaluateWithHeuristics(taskDescription, result));
+        // Use LLM-based evaluation if client is available
+        if (_mistralClient != null && !string.IsNullOrEmpty(_model))
+        {
+            return await EvaluateWithLLMAsync(taskDescription, result);
+        }
+
+        // Fallback to heuristic evaluation
+        return EvaluateWithHeuristics(taskDescription, result);
+    }
+
+    private async Task<EvaluationScore> EvaluateWithLLMAsync(string taskDescription, SearchResult result)
+    {
+        try
+        {
+            var papersJson = string.Join("\n", result.Papers.Select((p, i) => $"""
+                Paper {i + 1}:
+                - Title: {p.Title}
+                - Authors: {string.Join(", ", p.Authors.Select(a => a.Name))}
+                - Year: {p.Year}
+                - Citations: {p.CitationCount}
+                - Venue: {p.Venue ?? "Unknown"}
+                """));
+
+            var evaluationPrompt = $"""
+You are an expert research paper evaluator. Your task is to evaluate the following selected papers based on the user's research query.
+
+USER QUERY: {taskDescription}
+
+SELECTED PAPERS:
+{papersJson}
+
+Evaluate these papers on 4 dimensions (score each 1-5):
+
+1. CORRECTNESS (Paper quality based on citations and impact)
+   - 5: All papers are highly-cited landmarks (500+ citations)
+   - 4: Papers have significant citations (100-500)
+   - 3: Papers have moderate citations (50-100)
+   - 2: Papers have few citations (<50)
+   - 1: Papers have almost no citations
+
+2. ADHERENCE (Meeting the query constraints - year, citations, topic)
+   - 5: All papers perfectly match the query constraints
+   - 4: Most papers match constraints
+   - 3: Some papers match constraints
+   - 2: Few papers match constraints
+   - 1: Papers don't match constraints
+
+3. COMPLETENESS (Metadata quality - have full author info, venue, etc.)
+   - 5: All papers have complete metadata
+   - 4: Most papers have complete metadata
+   - 3: Some papers have complete metadata
+   - 2: Few papers have complete metadata
+   - 1: Papers are missing critical metadata
+
+4. USEFULNESS (Relevance to the query and impact in the field)
+   - 5: Papers are highly relevant and from top-tier venues (Nature, NeurIPS, ICML, Science)
+   - 4: Papers are very relevant from good venues
+   - 3: Papers are relevant from standard venues
+   - 2: Papers have limited relevance
+   - 1: Papers are not relevant to the query
+
+Respond with ONLY a JSON object (no markdown, no explanation) with keys: correctness, adherence, completeness, usefulness, reasoning, strengths, weaknesses (each value must be either an integer 1-5 or a string).
+""";
+
+            var agent = new MistralClientAgent(_mistralClient, "EvaluatorAgent", _model);
+
+            var messages = new List<IMessage>
+            {
+                new TextMessage(Role.User, evaluationPrompt)
+            };
+
+            var response = await agent.GenerateReplyAsync(messages);
+            var responseText = response.GetContent();
+
+            // Parse JSON response
+            var jsonMatch = Regex.Match(responseText, @"\{[\s\S]*\}", RegexOptions.IgnoreCase);
+            if (jsonMatch.Success)
+            {
+                var json = JsonSerializer.Deserialize<JsonElement>(jsonMatch.Value);
+                if (json.TryGetProperty("correctness", out var correctnessVal) &&
+                    json.TryGetProperty("adherence", out var adherenceVal) &&
+                    json.TryGetProperty("completeness", out var completenessVal) &&
+                    json.TryGetProperty("usefulness", out var usefulnessVal) &&
+                    json.TryGetProperty("strengths", out var strengthsVal) &&
+                    json.TryGetProperty("weaknesses", out var weaknessesVal))
+                {
+                    int correctness = int.Clamp(correctnessVal.GetInt32(), 1, 5);
+                    int adherence = int.Clamp(adherenceVal.GetInt32(), 1, 5);
+                    int completeness = int.Clamp(completenessVal.GetInt32(), 1, 5);
+                    int usefulness = int.Clamp(usefulnessVal.GetInt32(), 1, 5);
+
+                    var strengths = strengthsVal.GetString() ?? "Good selection";
+                    var weaknesses = weaknessesVal.GetString() ?? "Room for improvement";
+                    var comments = $"✓ {strengths} | ⚠ {weaknesses}";
+
+                    return new EvaluationScore(
+                        Correctness: correctness,
+                        Adherence: adherence,
+                        Completeness: completeness,
+                        Usefulness: usefulness,
+                        Comments: comments);
+                }
+            }
+
+            // Fallback if JSON parsing fails
+            return EvaluateWithHeuristics(taskDescription, result);
+        }
+        catch
+        {
+            // Fallback to heuristic evaluation if LLM evaluation fails
+            return EvaluateWithHeuristics(taskDescription, result);
+        }
     }
 
     private EvaluationScore EvaluateWithHeuristics(string taskDescription, SearchResult result)

@@ -49,7 +49,7 @@ try
     var tool = new SemanticScholarTool(service);
 
     var mistralClient = new MistralClient(apiKey: settings.MistralAI.ApiKey);
-    var judge = new PaperSearchJudge();
+    var judge = new PaperSearchJudge(mistralClient, settings.MistralAI.Model);
 
     var agent = new MistralClientAgent(mistralClient, "PaperSearchAgent", settings.MistralAI.Model)
         .RegisterMessageConnector()

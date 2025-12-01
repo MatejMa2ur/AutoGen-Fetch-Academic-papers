@@ -478,10 +478,6 @@ static void DisplayWelcome()
     Console.WriteLine("═══════════════════════════════════════════════════════════════════════════════");
     Console.WriteLine("\nFind research papers by topic, year, and citation count.");
     Console.WriteLine("Example: 'Find a paper on machine learning published after 2020'\n");
-    Console.WriteLine("Commands:");
-    Console.WriteLine("  eval       - Quick evaluation");
-    Console.WriteLine("  eval-full  - Full evaluation on 5 test queries");
-    Console.WriteLine("  quit/exit  - Exit\n");
 }
 
 static string GetUserQuery()

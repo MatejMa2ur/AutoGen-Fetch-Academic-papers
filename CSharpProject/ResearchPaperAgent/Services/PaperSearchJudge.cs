@@ -35,10 +35,12 @@ public class PaperSearchJudge
         // Use LLM-based evaluation if client is available
         if (_mistralClient != null && !string.IsNullOrEmpty(_model))
         {
+            Console.WriteLine("[LLM Evaluation] Using Mistral AI to evaluate papers...");
             return await EvaluateWithLLMAsync(taskDescription, result);
         }
 
         // Fallback to heuristic evaluation
+        Console.WriteLine("[Heuristic Evaluation] Using fallback heuristic rules...");
         return EvaluateWithHeuristics(taskDescription, result);
     }
 

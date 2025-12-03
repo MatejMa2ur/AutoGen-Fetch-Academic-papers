@@ -1,6 +1,9 @@
+using System.Text;
 using Autogen_research_paper_tool_calling_evaluation;
 using Autogen_research_paper_tool_calling_evaluation.Agents;
 using AutoGen.Core;
+using AutoGen.Mistral;
+using AutoGen.Mistral.Extension;
 
 var mistralClient = LLMConfiguration.GetMistralNemo();
 
@@ -86,11 +89,92 @@ var taskMessage = new TextMessage(Role.User, task)
     From = manager.Name
 };
 
+// Capture conversation messages for evaluation
+var conversationMessages = new List<IMessage>();
+var taskCompleted = false;
+
+Console.WriteLine("\n" + new string('=', 60));
+Console.WriteLine("STARTING MULTI-AGENT CONVERSATION");
+Console.WriteLine(new string('=', 60) + "\n");
+
 await foreach (var message in groupChat.SendAsync([taskMessage], maxRound: 10))
 {
+    conversationMessages.Add(message);
     if (message.From == "critique" && (message.GetContent()?.Contains("APPROVED") ?? false))
     {
         Console.WriteLine($"{message.GetContent()}");
+        taskCompleted = true;
+        break;
+    }
+}
+
+// ==================== EXTERNAL EVALUATION ====================
+Console.WriteLine("\n" + new string('=', 60));
+Console.WriteLine("EXTERNAL EVALUATION - Assessing Agent Performance");
+Console.WriteLine(new string('=', 60) + "\n");
+
+// Build conversation summary for evaluator
+var conversationSummary = new StringBuilder();
+conversationSummary.AppendLine("=== CONVERSATION HISTORY ===");
+conversationSummary.AppendLine($"Task: {task}");
+conversationSummary.AppendLine($"Task Status: {(taskCompleted ? "COMPLETED" : "INCOMPLETE")}");
+conversationSummary.AppendLine($"Total Rounds: {conversationMessages.Count}");
+conversationSummary.AppendLine("\n=== DETAILED CONVERSATION ===\n");
+
+foreach (var msg in conversationMessages)
+{
+    var content = msg.GetContent();
+    if (!string.IsNullOrEmpty(content))
+    {
+        // Truncate very long messages for readability
+        var displayContent = content.Length > 500 ? content.Substring(0, 500) + "..." : content;
+        conversationSummary.AppendLine($"[{msg.From}]: {displayContent}");
+        conversationSummary.AppendLine();
+    }
+}
+
+// Create evaluator agent
+var evaluator = Agents.CreateEvaluatorAgent(mistralClient);
+
+// Create evaluation initiator agent
+var evaluationInitiator = new MistralClientAgent(
+    client: mistralClient,
+    name: "eval_initiator",
+    model: "ministral-8b-2410",
+    systemMessage: @"You are responsible for initiating the evaluation process.
+You will ask the evaluator to assess the multi-agent system's performance.")
+    .RegisterMessageConnector()
+    .RegisterPrintMessage();
+
+// Create a simple GroupChat for evaluation
+var evaluationGroupChat = new GroupChat(
+    admin: evaluationInitiator,
+    members: [evaluationInitiator, evaluator]
+);
+
+// Send conversation summary to evaluator
+var evaluationPrompt = $"""
+Please evaluate the performance of this multi-agent research paper discovery system based on the conversation history below.
+
+Provide a detailed evaluation using the JSON format specified in your system message.
+
+{conversationSummary}
+""";
+
+var evaluationMessage = new TextMessage(Role.User, evaluationPrompt)
+{
+    From = evaluationInitiator.Name
+};
+
+Console.WriteLine("Evaluating agent performance...\n");
+
+await foreach (var response in evaluationGroupChat.SendAsync([evaluationMessage], maxRound: 2))
+{
+    if (response.From == "evaluator")
+    {
+        Console.WriteLine("\n=== EVALUATION RESULTS ===\n");
+        Console.WriteLine(response.GetContent());
+        Console.WriteLine("\n" + new string('=', 60));
         break;
     }
 }
